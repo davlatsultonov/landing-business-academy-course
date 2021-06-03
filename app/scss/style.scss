@@ -79,6 +79,11 @@ p {
         font-size: 14px;
         line-height: 20px;
     }
+
+    @media (min-width: 768px) {
+        font-size: 16px;
+        line-height: 24px;
+    }
 }
 
 h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:last-of-type) {
@@ -166,12 +171,25 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
             background-color: $orange;
         }
     }
+
+    &--link {
+        background-color: transparent;
+        box-shadow: none;
+
+        &:active {
+            background-color: transparent;
+        }
+
+        &:after {
+            opacity: .8;
+        }
+    }
 }
 
 .container {
-    max-width: 480px;
-    padding-left: 15px;
-    padding-right: 15px;
+    max-width: 414px;
+    padding-left: 16px;
+    padding-right: 16px;
     margin: 0 auto;
 }
 
@@ -261,7 +279,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     border-radius: 12px;
     background-color: #f2d1a2;
 
-    @media (min-width: 480px) {
+    @media (min-width: 414px) {
         max-width: 328px;
         margin: auto;
     }
@@ -563,30 +581,129 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 /* info-block */
 .info-block {
     padding-top: 80px;
-    padding-bottom: 80px;
+    padding-bottom: 64px;
+    color: $light-gray;
 
     &__title {
-        margin-bottom: 56px;
+        margin-bottom: 18px;
+    }
+
+    &__des {
+        color: inherit;
+        margin-bottom: 51px;
     }
 
     &-item {
+        $super-parent: &;
+        border-bottom: 1px solid $orange;
+        border-left: 1px solid transparent;
+        border-right: 1px solid transparent;
+        padding-right: 16px;
+        padding-left: 16px;
 
-        &__number, &__text {
+        &:first-of-type {
+            border-top: 1px solid $orange;
+        }
+
+        h3 {
+            line-height: 22px;
+        }
+
+        &__number, &__title, &__text {
             margin-bottom: 0;
         }
 
+        &__top {
+            display: flex;
+            align-items: flex-start;
+            padding: 32px 0 16px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        &__icon {
+            margin-left: auto;
+            margin-top: 6px;
+            transition: transform 200ms ease;
+            will-change: transform;
+        }
+
         &__number {
-            font-size: 72px;
-            font-weight: 100;
-            letter-spacing: -5px;
+            max-width: 32px;
+            width: 100%;
+            color: #a3a7cc;
+            margin-right: 4px;
+        }
+
+        &__title {
             color: $dark-blue;
-            margin-bottom: -3px;
+        }
+
+        &__des {
+            display: none;
+            padding: 0 36px 19px;
+
+            &:not(:last-of-type) {
+                border-bottom: 1px solid $orange;
+                margin-bottom: 24px;
+            }
+
+            &--checked {
+                position: relative;
+
+                &:before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    left: 11px;
+                    top: 7px;
+                    width: 13px;
+                    height: 8px;
+                    background: url("../images/icons/checked-icon.svg") no-repeat;
+                    background-size: 13px 8px;
+
+                    @media (min-width: 768px) {
+                        top: 8px;
+                    }
+                }
+            }
         }
 
         &__text {
             color: $light-gray;
-            max-width: 240px;
-            margin-left: 87px;
+        }
+
+        ul {
+
+            li {
+                font-size: 14px;
+                line-height: 18px;
+                color: inherit;
+
+                &:not(:last-child) {
+                    margin-bottom: 6px;
+                }
+            }
+        }
+
+        &--active {
+            border-radius: 8px;
+            border: 1px solid $orange;
+
+            #{$super-parent} {
+
+                &__icon {
+                    transform: rotate(180deg);
+                }
+
+                &__des {
+                    display: block;
+                }
+            }
+        }
+
+        &--no-border {
+            border-bottom: 0;
         }
     }
 
@@ -595,9 +712,15 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         &__item {
 
             &:not(:last-of-type) {
-                margin-bottom: 51px;
+                /*margin-bottom: 51px;*/
             }
         }
+    }
+
+    &--link-btn {
+        margin-top: 32px;
+        color: $orange;
+        border: 1px solid $orange;
     }
 }
 
