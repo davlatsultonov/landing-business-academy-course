@@ -44,10 +44,10 @@ h1  {
 
 
 h2  {
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 900;
     letter-spacing: -0.4px;
-    line-height: 28px;
+    line-height: 25px;
 
     @media (min-width: 359px) {
         font-size: 27px;
@@ -505,7 +505,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 
 /* video-block */
 .video-block {
-    background-color: #060b40;
+    background-color: $purple;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 16px 16px -8px rgba(76, 81, 128, 0.24), 0 0 16px rgba(76, 81, 128, 0.16), inset 0 -1px 0 rgba(0, 0, 0, 0.16);
@@ -601,56 +601,6 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 }
 
-/* online show block */
-.online-show-block {
-    min-height: 20px;
-    background: rgba(242, 209, 162, .15) url("../images/icons/record-border.svg") center 24px no-repeat;
-    background-size: 280px;
-
-
-    @media (min-width: 359px) {
-        background-size: unset;
-    }
-
-    &__inner {
-        max-width: 230px;
-        padding: 88px 0 83px 50px;
-        margin: 0 auto;
-        position: relative;
-
-        @media (min-width: 359px) {
-            max-width: 270px;
-            padding-top: 100px;
-            padding-left: 65px
-        }
-    }
-
-    &__record-icon {
-        position: absolute;
-        left: -6px;
-        top: 44px;
-        animation-timing-function: ease-in-out;
-        animation-name: record;
-        animation-duration: .7s;
-        animation-iteration-count: infinite;
-        animation-direction: alternate-reverse;
-    }
-
-    h3 {
-        line-height: 22px;
-    }
-
-    p {
-        font-size: 14px;
-        line-height: 20px;
-
-        @media (min-width: 359px) {
-            font-size: 16px;
-            line-height: 24px;
-        }
-    }
-}
-
 
 /* master class */
 .master-class {
@@ -702,9 +652,13 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 
 /* registration block */
 .registration-block {
-    background-color: #033140;
-    padding-top: 64px;
+    background-color: $purple;
+    padding-top: 80px;
     padding-bottom: 8px;
+
+    .container {
+        position: relative;
+    }
 
     p {
         line-height: 18px;
@@ -712,20 +666,31 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 
     h2 {
-        letter-spacing: -0.4px;
         text-transform: uppercase;
         color: #fff;
+
+        @media (min-width: 359px) {
+            font-size: 24px;
+            letter-spacing: -0.3px;
+            line-height: 32px;
+        }
     }
 
     a {
-        color: #457373;
+        color: inherit;
         text-decoration: underline;
+    }
+
+    &__img {
+        position: absolute;
+        top: -160px;
+        right: 13px;
     }
 
     &__footer {
         text-align: center;
         margin-top: 32px;
-        color: #457373;
+        color: #54598c;
         font-size: 8px;
         font-weight: 400;
         line-height: 16px;
@@ -736,7 +701,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 
     &-form {
-        margin-top: 15px;
+        margin-top: 30px;
 
         &__label {
             position: relative;
@@ -750,7 +715,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
             width: 100%;
             height: 56px;
             border-radius: 8px;
-            border: 1px solid #457373;
+            border: 1px solid $light-purple;
             padding-left: 16px;
             padding-right: 16px;
             background-color: transparent;
@@ -787,6 +752,11 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
             }
         }
 
+        &__btn {
+            margin-top: 16px;
+            background-color: $light-purple;
+        }
+
         &__text {
             pointer-events: none;
             top: 16px;
@@ -795,7 +765,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
             font-size: 18px;
             font-weight: 300;
             line-height: 24px;
-            color: #457373;
+            color: #54598c;
             transition: all 200ms ease-in-out;
         }
     }
@@ -817,8 +787,8 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 /* footer */
 .footer {
     padding-top: 24px;
-    padding-bottom: 16px;
-    background-color: #002430;
+    padding-bottom: 8px;
+    background-color: #050933;
 
     &__logo {
         margin-bottom: 16px;
