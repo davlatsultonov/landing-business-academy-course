@@ -469,6 +469,38 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 }
 
+/* reason block */
+.reason-block {
+    padding-top: 80px;
+    padding-bottom: 49px;
+    background-color:  #060b3f;
+
+    &__title {
+        margin-top: 20px;
+        margin-bottom: 54px;
+    }
+
+    h1, h3 {
+        background-image: linear-gradient(to right, #ccaa7a 0%, #ffeacc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    &-list {
+
+
+        &__item {
+
+            &:not(:last-of-type) {
+                border-bottom: 1px solid transparent;
+                border-image: url("../images/border-img.svg") 1 stretch;
+                margin-bottom: 34px;
+                padding-bottom: 38px;
+            }
+        }
+    }
+}
+
 /* speaker-block */
 .speaker-block {
     background-color: #f0f0f5;
