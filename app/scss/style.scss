@@ -285,6 +285,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     display: flex;
     overflow: hidden;
     position: relative;
+    padding-bottom: 24px;
     padding-left: var(--p);
     padding-right: var(--p);
 
@@ -474,7 +475,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 .speaker-block {
     background-color: #f0f0f5;
     padding-top: 80px;
-    padding-bottom: 64px;
+    padding-bottom: 48px;
 
     &__img {
         margin: 20px auto 24px;
@@ -833,7 +834,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 
     .messenger-block-list {
         margin-top: 27px;
-        margin-bottom: 48px;
+        margin-bottom: 24px;
     }
 
     .registration-block-form {
@@ -880,7 +881,6 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 
     &__footer {
-        text-align: center;
         margin-top: 32px;
         color: #54598c;
         font-size: 8px;
