@@ -172,7 +172,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         }
     }
 
-    &--link {
+    &--bg-transparent {
         background-color: transparent;
         box-shadow: none;
 
@@ -183,6 +183,13 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         &:after {
             opacity: .8;
         }
+    }
+
+    &--link {
+        @extend .btn--bg-transparent;
+        height: auto;
+        width: auto;
+        border: none;
     }
 }
 
@@ -580,6 +587,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 
 /* info-block */
 .info-block {
+    $super-parent: &;
     padding-top: 80px;
     padding-bottom: 64px;
     color: $light-gray;
@@ -594,7 +602,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 
     &-item {
-        $super-parent: &;
+        $item-super-parent: &;
         border-bottom: 1px solid $orange;
         border-left: 1px solid transparent;
         border-right: 1px solid transparent;
@@ -690,7 +698,11 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
             border-radius: 8px;
             border: 1px solid $orange;
 
-            #{$super-parent} {
+            #{$item-super-parent} {
+
+                &__top {
+                    padding-bottom: 20px;
+                }
 
                 &__icon {
                     transform: rotate(180deg);
@@ -707,20 +719,113 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         }
     }
 
-    &-list {
-
-        &__item {
-
-            &:not(:last-of-type) {
-                /*margin-bottom: 51px;*/
-            }
-        }
-    }
-
-    &--link-btn {
+    &__link-btn {
         margin-top: 32px;
         color: $orange;
         border: 1px solid $orange;
+    }
+
+    &--answers {
+        background-color: #b8bbd9;
+        color: #fff;
+        padding-bottom: 118px;
+
+        #{$super-parent} {
+
+            &__title {
+                color: inherit;
+            }
+
+            &-item {
+                border-bottom-color: #fff;
+
+                &:first-of-type {
+                    border-top-color: transparent;
+                }
+
+                &__top {
+                    padding-top: 24px;
+                    padding-bottom: 9px;
+                }
+
+                &__title {
+                    font-size: 16px;
+                    line-height: 20px;
+
+                    @media (min-width: 359px) {
+                        font-size: 18px;
+                        line-height: 22px;
+                    }
+                }
+
+                &__des {
+                    padding-right: 0;
+                    padding-left: 0;
+
+                    &:not(:last-of-type) {
+                        border-bottom-color: inherit;
+                    }
+                }
+
+                &__text {
+                    color: inherit;
+                }
+
+                &__icon {
+                    margin-top: 0;
+                    align-self: center;
+                }
+
+                &--active {
+                    border-color: #fff;
+
+                    .info-block-item__top {
+                        padding-bottom: 17px;
+                    }
+
+                    &:first-of-type {
+                        border-top-color: #fff;
+                    }
+                }
+            }
+
+            &__link-btn {
+                margin-top: 28px;
+                line-height: 24px;
+                letter-spacing: 0.6px;
+                font-weight: 500;
+                border: none;
+                color: inherit;
+                border-bottom: 1px dashed #fff;
+                padding: 0;
+                border-radius: 0;
+                position: relative;
+                overflow: visible;
+
+                &:after {
+                    display: none;
+                }
+
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    position: absolute;
+                    right: -24px;
+                    top: 7px;
+                    width: 18px;
+                    height: 10px;
+                    background: url("../images/icons/arrow-down-white.svg") no-repeat;
+                    transition: transform 200ms ease;
+                }
+
+                &.active {
+
+                    &:before {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
     }
 }
 
