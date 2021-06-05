@@ -4,8 +4,6 @@
 @import "libs";
 @import "global";
 
-
-
 html, body {
     height: 100%;
 }
@@ -200,7 +198,6 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     margin: 0 auto;
 }
 
-
 /* main-content */
 .main-content, .header {
     background-color: #2d2e40;
@@ -260,7 +257,6 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         position: relative;
     }
 }
-
 
 /* header */
 .header {
@@ -423,11 +419,6 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 }
 
 /* advice-block */
-.master-class {
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
-
 .advice-block {
     padding-top: 80px;
     padding-bottom: 51px;
@@ -583,7 +574,6 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         }
     }
 }
-
 
 /* info-block */
 .info-block {
@@ -829,55 +819,6 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 }
 
-
-/* master class */
-.master-class {
-
-    &__btn {
-        font-size: 14px;
-        letter-spacing: 0.3px;
-        width: 100%;
-        display: inline-block;
-        border-radius: 8px;
-        background-color: #d9bb91;
-        padding-top: 16px;
-        padding-bottom: 16px;
-        color: #fff;
-        text-align: center;
-        text-transform: uppercase;
-        cursor: pointer;
-        overflow: hidden;
-        position: relative;
-        box-shadow: 0 8px 8px rgba(195, 168, 130, 0.16), 0 0 8px rgba(195, 168, 130, 0.08);
-
-        &:after {
-            background: #fff;
-            content: "";
-            height: 9.6875rem;
-            left: -4.6875rem;
-            opacity: 0.2;
-            position: absolute;
-            top: -50px;
-            transform: rotate(
-                            35deg
-            );
-            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            width: 3.125rem;
-            z-index: 1;
-            animation-delay: 0.01s;
-            animation-timing-function: ease-in-out;
-            animation-name: radiance;
-            animation-duration: 2s;
-            animation-iteration-count: infinite;
-        }
-    }
-
-    img {
-        margin: 19px auto;
-    }
-}
-
-
 /* registration block */
 .registration-block {
     background-color: $purple;
@@ -999,7 +940,6 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 }
 
-
 .input-error {
 
     input, input:hover {
@@ -1010,7 +950,6 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         color: #dc1414;
     }
 }
-
 
 /* footer */
 .footer {
@@ -1054,7 +993,6 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         opacity: 0.5;
     }
 }
-
 
 @keyframes record {
     0% {
