@@ -1,0 +1,76 @@
+@import "vars";
+@import "../../node_modules/slick-carousel/slick/slick.scss";
+@import "../../node_modules/slick-carousel/slick/slick-theme.scss";
+
+.slider-wrapper {
+  width: calc(100% + 30px); //we need more width for the shadows on the edges
+  padding: 0 15px; //space for the shadows
+  margin-left: -15px; //put the div in its original position
+  overflow: hidden; //hide the overflow
+}
+
+.slick-list {
+  overflow: visible;
+}
+
+.slick-initialized {
+
+  .slick-slide {
+    transform: scale(.95);
+    transition: transform 380ms ease, opacity 250ms ease;
+    will-change: transform, opacity;
+    cursor: pointer;
+    box-shadow: none;
+    opacity: .5;
+
+    &.slick-active {
+      transform: scale(1);
+      opacity: 1;
+      position: relative;
+      z-index: 101;
+    }
+
+    &.slick-cloned {
+      visibility: hidden;
+    }
+
+  }
+}
+
+.slick-slide .drop-shadow {
+  box-shadow: none; //no shadow for a hidden slide
+  transition: box-shadow 0.1s ease-in-out; //little effect to fade the shadow
+}
+
+.slick-slide.slick-active .drop-shadow {
+  box-shadow: 0 0 43px 0 rgba(0, 0, 0, 0.35); //only the active slides have the shadow
+}
+
+.slick-dots {
+  bottom: -50px;
+
+  li {
+    width: 16px;
+    height: 16px;
+    margin-left: 12px;
+    margin-right: 12px;
+
+    button {
+      width: 16px;
+      height: 16px;
+      border-radius: 100%;
+      background: rgba(163, 167, 204, .3);
+
+      &:before {
+        display: none;
+      }
+    }
+
+    &.slick-active {
+
+      button {
+        background: $dark-blue;
+      }
+    }
+  }
+}

@@ -6,3 +6,10 @@ $orange: #e6c69a;
 $light-violet: #a3a7cc;
 $light-purple: #40468c;
 $purple: #060b40;
+
+// slick-carousel
+// this styles are needed to fix slick
+$slick-font-path: "/node_modules/slick-carousel/slick/fonts/" !default;
+$slick-font-family: "slick" !default;
+$slick-loader-path: "/node_modules/slick-carousel/slick/" !default;
+$slick-arrow-color: black !default;

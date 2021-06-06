@@ -3,6 +3,92 @@ $(function () {
         once: true
     });
 
+    let slidesList, slickSlides, currentSlide, currentSlideIndex, slickSlidesLength, slideIndentFromMiddle = 25, slideIndent = 30;
+
+    $('.tariff-list-group').on('init', function () {
+        slidesList = $('.slick-list');
+        slickSlides = slidesList.find('.slick-slide');
+        currentSlide = slidesList.find('.slick-slide.slick-active');
+        currentSlideIndex = $(slickSlides).index(currentSlide);
+        slickSlidesLength = slickSlides.length - 1;
+        updateSlider({
+            slidesList, currentSlide, currentSlideIndex, slidesLength: slickSlidesLength
+        });
+    }).slick({
+        speed: 220,
+        arrows: false,
+        dots: true,
+        infinite: false,
+        cssEase: 'linear'
+    }).on('afterChange', function () {
+        currentSlide = slidesList.find('.slick-slide.slick-active');
+        currentSlideIndex = $(slickSlides).index(currentSlide);
+        updateSlider({
+            slidesList, currentSlide, currentSlideIndex, slidesLength: slickSlidesLength
+        });
+    });
+
+    // function to update paddings of a slider to make visible next and previous sliders
+    function updateSlider(
+        {
+            slidesList,
+            currentSlide,
+            currentSlideIndex,
+            slidesLength= 0
+        } = {}
+    ) {
+        if (!slidesLength) return;
+        if (currentSlideIndex !== 0 && currentSlideIndex < slidesLength) {
+            // set padding left and right for element when it is in the middle of a slider
+            slidesList.css({
+                'padding-left': `${slideIndentFromMiddle}px`,
+                'padding-right': `${slideIndentFromMiddle}px`,
+            });
+            updateTransform('middle');
+        } else if (currentSlideIndex === slidesLength) {
+            // set padding left for the last element when slider reaches end
+            slidesList.css({
+                'padding-left': `${slideIndent}px`,
+                'padding-right': '0',
+            });
+            updateTransform('last');
+        } else {
+            // set padding right for the first element when slider is in the starting position
+            slidesList.css({
+                'padding-left': '0',
+                'padding-right': `${slideIndent}px`,
+            });
+            updateTransform();
+        }
+
+        // function to update transform of the previous and next sibling of an active slide
+        function updateTransform(pos = 'first') {
+            let prevSibling = currentSlide.prev()[0],
+                nextSibling = currentSlide.next()[0];
+
+            // reset first value
+            $(currentSlide).css(setTransform());
+
+            // then assign value
+            if (pos === 'first') {
+                $(nextSibling).css(setTransform(-20));
+            } else if (pos === 'last') {
+                $(prevSibling).css(setTransform(20));
+            } else {
+                $(nextSibling).css(setTransform(-20));
+                $(prevSibling).css(setTransform(20));
+            }
+        }
+    }
+
+    function setTransform(x = 0) {
+        return x ? {
+            'transform': `scale(.95) translateX(${x}px)`,
+        } : {
+            'transform': 'scale(1)'
+        }
+    }
+
     $('.js--video-block__btn').on('click', function(ev) {
         ev.preventDefault();
         setTimeout(() => {

@@ -3,6 +3,7 @@
 @import "reset";
 @import "libs";
 @import "global";
+@import "slick-styles";
 
 html, body {
     height: 100%;
@@ -885,7 +886,12 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 
 .tariff-list-group {
     margin-top: 56px;
-    margin-bottom: 128px;
+    margin-bottom: 176px !important;
+    max-height: 860px;
+
+    &.slick-initialized {
+        max-height: inherit;
+    }
 }
 
 .tariff-list-block {
@@ -898,7 +904,10 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     background-color: var(--bg-color);
     padding: 60px 16px 32px;
     border-radius: 16px;
-    box-shadow: var(--base-shadow);
+
+    &.slick-active {
+        box-shadow: var(--base-shadow);
+    }
 
     &__title {
         font-size: 24px;
@@ -913,6 +922,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 
     &__btn {
         background-color: var(--base-color);
+        box-shadow: 0 8px 8px rgba(195, 168, 130, 0.16), 0 0 8px rgba(195, 168, 130, 0.08);
     }
 
     .tariff-list {
