@@ -136,8 +136,8 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     font-size: 14px;
     position: relative;
     overflow: hidden;
-    transition: opacity 200ms ease-in-out, background-color 200ms ease-in-out;
-    will-change: opacity, background-color;
+    transition: background-color 200ms ease;
+    will-change: background-color;
     box-shadow: 0 8px 8px rgba(45, 57, 58, 0.16), 0 0 8px rgba(45, 57, 58, 0.08);
 
     &:after {
@@ -162,25 +162,17 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 
     &:active {
-        background-color: #2c677b;
+        opacity: .8;
     }
 
     &--bg-orange {
         background-color: $orange;
         box-shadow: 0 8px 8px rgba(195, 168, 130, 0.16), 0 0 8px rgba(195, 168, 130, 0.08);
-
-        &:active {
-            background-color: $orange;
-        }
     }
 
     &--bg-transparent {
         background-color: transparent;
         box-shadow: none;
-
-        &:active {
-            background-color: transparent;
-        }
 
         &:after {
             opacity: .8;
@@ -842,6 +834,136 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 }
 
+/* tariff list group */
+.tariff {
+    padding-top: 80px;
+    padding-bottom: 64px;
+    color: $light-gray;
+
+    h3 {
+        margin-bottom: 24px;
+    }
+
+    &__title {
+        letter-spacing: -0.7px;
+        margin-bottom: 12px;
+    }
+
+    &__des {
+
+        &:not(:last-of-type) {
+            margin-bottom: 48px;
+        }
+    }
+
+    &__installment {
+        font-size: 48px;
+        letter-spacing: -0.27px;
+
+        span {
+            font-size: 24px;
+        }
+
+        @media (min-width: 359px) {
+            font-size: 60px;
+        }
+    }
+
+    &__partners-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+
+        img {
+
+            &:not(:last-child) {
+                margin-bottom: 16px;
+            }
+        }
+    }
+}
+
+.tariff-list-group {
+    margin-top: 56px;
+    margin-bottom: 128px;
+}
+
+.tariff-list-block {
+    --bg-color: #fff;
+    --base-color: #{$orange};
+    --price-color: #{$orange};
+    --base-shadow: 0 16px 16px rgba(195, 168, 130, 0.2), 0 0 16px rgba(195, 168, 130, 0.16), inset 0 -1px 1px rgba(195, 168, 130, 0.32);
+    $super-parent: &;
+
+    background-color: var(--bg-color);
+    padding: 60px 16px 32px;
+    border-radius: 16px;
+    box-shadow: var(--base-shadow);
+
+    &__title {
+        font-size: 24px;
+        color: $dark-blue;
+        text-transform: none;
+    }
+
+    &__price {
+        color: var(--price-color);
+        margin-bottom: 16px;
+    }
+
+    &__btn {
+        background-color: var(--base-color);
+    }
+
+    .tariff-list {
+        margin-top: 24px;
+        margin-bottom: 32px;
+
+        &__item {
+            color: $light-gray;
+            border-bottom: 1px solid var(--base-color);
+            padding-top: 24px;
+            padding-bottom: 8px;
+
+            &:first-of-type {
+                border-top: 1px solid var(--base-color);
+            }
+
+            &--del {
+                text-decoration: line-through;
+                color: #d7d7d9;
+            }
+        }
+    }
+
+
+    &--dark {
+        --linear-gradient: linear-gradient(to right, #007399 0%, #5cb1cd 100%);
+        --bg-color: #12181a;
+        --base-color: #3a6e80;
+        --price-color: #{$light-violet};
+        --base-shadow: 0 16px 16px rgba(18, 24, 26, 0.16), 0 0 16px rgba(18, 24, 26, 0.12), inset 0 -1px 1px #000000;
+
+        #{$super-parent} {
+
+            &__title {
+                background-image: var(--linear-gradient);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        .tariff-list {
+
+            &__item {
+                background-image: var(--linear-gradient);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+}
+
 
 /* registration block */
 .registration-block {
@@ -978,10 +1100,6 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
                 &__btn {
                     background-color: $orange;
                     box-shadow: 0 8px 8px rgba(195, 168, 130, 0.16), 0 0 8px rgba(195, 168, 130, 0.08);
-
-                    &:active {
-                        background-color: $orange;
-                    }
                 }
             }
         }
