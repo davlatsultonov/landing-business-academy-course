@@ -593,6 +593,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         border-right: 1px solid transparent;
         padding-right: 16px;
         padding-left: 16px;
+        transition-property: height, opacity,transform,-webkit-transform!important;
 
         &:first-of-type {
             border-top: 1px solid $orange;
@@ -633,8 +634,11 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         }
 
         &__des {
-            display: none;
+            opacity: 0;
+            visibility: hidden;
+            max-height: 0;
             padding: 0 36px 19px;
+            transition: opacity 300ms ease-in-out, visibility 400ms ease;
 
             &:not(:last-of-type) {
                 border-bottom: 1px solid $orange;
@@ -694,7 +698,9 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
                 }
 
                 &__des {
-                    display: block;
+                    opacity: 1;
+                    visibility: visible;
+                    max-height: initial;
                 }
             }
         }

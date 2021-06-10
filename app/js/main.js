@@ -26,11 +26,11 @@ $(function () {
     }).on('afterChange', function () {
         currentSlide = slidesList.find('.slick-slide.slick-active');
         currentSlideIndex = $(slickSlides).index(currentSlide);
-
+        const isLastSlide = currentSlideIndex === 2;
         tariffTitle.css({
-            'margin-bottom': (currentSlideIndex === 2) ? '46px' : '0',
+            'margin-bottom': isLastSlide ? '46px' : '0',
             'color': function () {
-                return (currentSlideIndex === 2) ? '#060b40' : (currentSlideIndex === 1) ? '#e6c69a' : '#3a6e80'
+                return isLastSlide ? '#060b40' : (currentSlideIndex === 1) ? '#e6c69a' : '#3a6e80'
             }
         });
 
@@ -102,6 +102,21 @@ $(function () {
         }
     }
 
+    checkAOSEnd('info-block', $('[data-aos-id="info-block"]').last()[0]);
+    checkAOSEnd('info-block-faq', $('[data-aos-id="info-block-faq"]').last()[0]);
+
+    function checkAOSEnd(idName = '', el = false, transitionDuration = 0.4) {
+        if (!el && !idName) return;
+
+        document.addEventListener(`aos:in:${idName}`, ({ detail }) => {
+            if (el === detail) {
+                $(`[data-aos-id='${idName}'].info-block-item`).css({
+                    'transition-duration':  `${transitionDuration}s`
+                })
+            }
+        });
+    }
+
     $('.js--video-block__btn').on('click', function(ev) {
         ev.preventDefault();
         setTimeout(() => {
@@ -110,64 +125,44 @@ $(function () {
         }, 800);
     });
 
-    let isValidMask = false;
-
-/*    $('.phone-mask').mask('+7 (000) 000-00-00', {
-        onComplete: function (cep) {
-            isValidMask = true;
-        },
-        onInvalid: function (cep) {
-            isValidMask = false;
-        },
-
-    });
-
-    // Отправка заявки
-    $('.js-zayavka').submit(function (e) {
-        e.preventDefault();
-
-        if (isValidMask) {
-            ym(70783414,'reachGoal','mama_lead')
-            VK.Goal('lead')
-            fbq('track', 'Lead')
-
-            $.post('/mail.php', $(this).serialize(), function (response) {
-                if (response && response.status === false) {
-                    alert(response.error);
-                } else if (response && response.status === true) {
-                    //alert(response.msg)
-                    location.href = '/thanks'
-                } else {
-                    alert('Ошибка отправки. Пожалуйста свяжитесь с администратором!')
-                }
-            })
-        }
-    });*/
-
     // accordion blocks
     function makeAccordion(els, elsParent, activeClass, borderCancelClass) {
+        if (!els.length) return;
+
         els.on('click', function () {
             const thisParent = $(this).parent();
+            const thisParentHeight =  this.scrollHeight + 2;
             const thisParentPrevSibling = thisParent.prev();
 
             if (thisParent.hasClass(activeClass)) {
+                thisParent.css('height', thisParentHeight);
                 thisParent.removeClass(activeClass);
                 if (thisParentPrevSibling.length) thisParentPrevSibling.removeClass(borderCancelClass);
                 return;
             }
 
             elsParent.each(function () {
+                $(this).css('height', $(this).find('.info-block-item__top').outerHeight() + 2);
                 $(this).removeClass(activeClass);
                 $(this).removeClass(borderCancelClass);
             })
 
+            const desEl = thisParent.find('.info-block-item__des');
+            const desHeight = desEl.length < 2 ? desEl[0].scrollHeight + 23
+                                : (desEl.toArray().reduce((acc, curr) => acc + curr.scrollHeight + 22, 0)) + (desEl.length - 1) * 23;
             thisParent.addClass(activeClass);
+            thisParent.css('height', desHeight + thisParentHeight);
             thisParentPrevSibling.addClass(thisParentPrevSibling.length ? borderCancelClass : '');
         });
     }
 
     // dom els for accordion
     const infoBlockItemEls = $('.info-block-item');
+
+    infoBlockItemEls.each(function () {
+        const btnHeight = $(this).find('.info-block-item__top').outerHeight() + 2;
+        $(this).css('height', btnHeight);
+    });
     const infoBlockItemBtnEls = infoBlockItemEls.find('.info-block-item__top');
     makeAccordion(infoBlockItemBtnEls, infoBlockItemEls, 'info-block-item--active', 'info-block-item--no-border');
 });
