@@ -16,6 +16,7 @@ $(function () {
             slidesList, currentSlide, currentSlideIndex, slidesLength: slickSlidesLength
         });
     }).slick({
+        mobileFirst: true,
         speed: 220,
         arrows: false,
         dots: true,
