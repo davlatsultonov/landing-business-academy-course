@@ -457,8 +457,8 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
             &:not(:last-of-type) {
                 border-bottom: 1px solid transparent;
                 border-image: url("../images/border-img.svg") 1 stretch;
-                margin-bottom: 34px;
-                padding-bottom: 38px;
+                margin-bottom: 32px;
+                padding-bottom: 16px;
             }
         }
     }
@@ -904,15 +904,33 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     background-color: var(--bg-color);
     padding: 60px 16px 32px;
     border-radius: 16px;
+    box-shadow: var(--base-shadow);
+    position: relative;
 
     &.slick-active {
         box-shadow: var(--base-shadow);
     }
 
+    .p-small {
+        font-size: 13px;
+        line-height: 18px;
+        margin-top: 5px;
+    }
+
+    &__logo {
+        position: absolute;
+        top: -57px;
+        z-index: 111;
+        left: 8px;
+    }
+
     &__title {
         font-size: 24px;
-        color: $dark-blue;
+        letter-spacing: -0.27px;
+        line-height: 32px;
+        color: #3a6e80;
         text-transform: none;
+        margin-bottom: 0;
     }
 
     &__price {
@@ -930,10 +948,12 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         margin-bottom: 32px;
 
         &__item {
-            color: $light-gray;
+            color: #737d80;
             border-bottom: 1px solid var(--base-color);
             padding-top: 24px;
             padding-bottom: 8px;
+            font-size: 14px;
+            line-height: 20px;
 
             &:first-of-type {
                 border-top: 1px solid var(--base-color);
@@ -946,13 +966,50 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         }
     }
 
+    &--beige {
+        --bg-color: #{$orange};
+        --base-color: #fff;
+        --price-color: #fff;
+
+        #{$super-parent} {
+
+            &__title {
+                color: #fff;
+            }
+
+            &__btn {
+                color: $orange;
+            }
+        }
+
+        .tariff-list {
+
+            &__item {
+                color: #fff;
+
+                &:first-of-type {
+                    border-color: #f9f1e5;
+                }
+
+                &--del {
+                    color: #f9ecdb;
+                }
+            }
+        }
+    }
 
     &--dark {
-        --linear-gradient: linear-gradient(to right, #007399 0%, #5cb1cd 100%);
+        --linear-gradient: linear-gradient(to right, #4750b3 0%, #b3b9ff 100%);
         --bg-color: #12181a;
-        --base-color: #3a6e80;
+        --base-color: #3a4080;
         --price-color: #{$light-violet};
         --base-shadow: 0 16px 16px rgba(18, 24, 26, 0.16), 0 0 16px rgba(18, 24, 26, 0.12), inset 0 -1px 1px #000000;
+
+        .p-small {
+            background-image: var(--linear-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
         #{$super-parent} {
 
@@ -969,6 +1026,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
                 background-image: var(--linear-gradient);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
+                border-image: linear-gradient(to right, #4750b3 0%, #b3b9ff 100%) 1 stretch;
             }
         }
     }

@@ -3,7 +3,8 @@ $(function () {
         once: true
     });
 
-    let slidesList, slickSlides, currentSlide, currentSlideIndex, slickSlidesLength, slideIndentFromMiddle = 25, slideIndent = 30;
+    let slidesList, slickSlides, currentSlide, currentSlideIndex,
+        slickSlidesLength, slideIndentFromMiddle = 12, slideIndent = 24;
 
     $('.tariff-list-group').on('init', function () {
         slidesList = $('.slick-list');
@@ -71,12 +72,12 @@ $(function () {
 
             // then assign value
             if (pos === 'first') {
-                $(nextSibling).css(setTransform(-20));
+                $(nextSibling).css(setTransform(-40));
             } else if (pos === 'last') {
-                $(prevSibling).css(setTransform(20));
+                $(prevSibling).css(setTransform(40));
             } else {
-                $(nextSibling).css(setTransform(-20));
-                $(prevSibling).css(setTransform(20));
+                $(nextSibling).css(setTransform(-40));
+                $(prevSibling).css(setTransform(40));
             }
         }
     }
