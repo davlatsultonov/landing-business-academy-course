@@ -23,6 +23,10 @@
     box-shadow: none;
     opacity: .5;
 
+    &:focus-visible {
+      outline: none;
+    }
+
     &.slick-active {
       transform: scale(1);
       opacity: 1;

@@ -4,7 +4,8 @@ $(function () {
     });
 
     let slidesList, slickSlides, currentSlide, currentSlideIndex,
-        slickSlidesLength, slideIndentFromMiddle = 12, slideIndent = 24;
+        slickSlidesLength, slideIndentFromMiddle = 12, slideIndent = 24,
+        tariffTitle = $('.tariff__title');
 
     $('.tariff-list-group').on('init', function () {
         slidesList = $('.slick-list');
@@ -17,7 +18,7 @@ $(function () {
         });
     }).slick({
         mobileFirst: true,
-        speed: 220,
+        speed: 320,
         arrows: false,
         dots: true,
         infinite: false,
@@ -25,6 +26,14 @@ $(function () {
     }).on('afterChange', function () {
         currentSlide = slidesList.find('.slick-slide.slick-active');
         currentSlideIndex = $(slickSlides).index(currentSlide);
+
+        tariffTitle.css({
+            'margin-bottom': (currentSlideIndex === 2) ? '46px' : '0',
+            'color': function () {
+                return (currentSlideIndex === 2) ? '#060b40' : (currentSlideIndex === 1) ? '#e6c69a' : '#3a6e80'
+            }
+        });
+
         updateSlider({
             slidesList, currentSlide, currentSlideIndex, slidesLength: slickSlidesLength
         });
@@ -77,7 +86,9 @@ $(function () {
             } else if (pos === 'last') {
                 $(prevSibling).css(setTransform(40));
             } else {
-                $(nextSibling).css(setTransform(-40));
+                $(nextSibling).css({
+                    'transform': 'scale(0.85) translateX(-80px)'
+                });
                 $(prevSibling).css(setTransform(40));
             }
         }
@@ -85,7 +96,7 @@ $(function () {
 
     function setTransform(x = 0) {
         return x ? {
-            'transform': `scale(.95) translateX(${x}px)`,
+            'transform': `scale(.9) translateX(${x}px)`,
         } : {
             'transform': 'scale(1)'
         }
