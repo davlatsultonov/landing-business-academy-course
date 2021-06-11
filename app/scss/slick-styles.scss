@@ -19,7 +19,6 @@
     transform: scale(.94);
     transition: transform 380ms ease, opacity 250ms ease;
     will-change: transform, opacity;
-    cursor: pointer;
     box-shadow: none;
     opacity: .5;
 
@@ -32,6 +31,7 @@
       opacity: 1;
       position: relative;
       z-index: 101;
+      cursor: pointer;
     }
 
     &.slick-cloned {

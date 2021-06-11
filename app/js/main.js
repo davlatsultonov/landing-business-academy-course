@@ -135,14 +135,14 @@ $(function () {
             const thisParentPrevSibling = thisParent.prev();
 
             if (thisParent.hasClass(activeClass)) {
-                thisParent.css('height', thisParentHeight);
+                thisParent.css('max-height', thisParentHeight);
                 thisParent.removeClass(activeClass);
                 if (thisParentPrevSibling.length) thisParentPrevSibling.removeClass(borderCancelClass);
                 return;
             }
 
             elsParent.each(function () {
-                $(this).css('height', $(this).find('.info-block-item__top').outerHeight() + 2);
+                $(this).css('max-height', $(this).find('.info-block-item__top')[0].scrollHeight + 2);
                 $(this).removeClass(activeClass);
                 $(this).removeClass(borderCancelClass);
             })
@@ -151,7 +151,7 @@ $(function () {
             const desHeight = desEl.length < 2 ? desEl[0].scrollHeight + 23
                                 : (desEl.toArray().reduce((acc, curr) => acc + curr.scrollHeight + 22, 0)) + (desEl.length - 1) * 23;
             thisParent.addClass(activeClass);
-            thisParent.css('height', desHeight + thisParentHeight);
+            thisParent.css('max-height', desHeight + thisParentHeight);
             thisParentPrevSibling.addClass(thisParentPrevSibling.length ? borderCancelClass : '');
         });
     }
@@ -159,9 +159,10 @@ $(function () {
     // dom els for accordion
     const infoBlockItemEls = $('.info-block-item');
 
-    infoBlockItemEls.each(function () {
-        const btnHeight = $(this).find('.info-block-item__top').outerHeight() + 2;
-        $(this).css('height', btnHeight);
+    infoBlockItemEls.each(function (i, el) {
+        setTimeout(() => {
+            $(this).css('max-height', $(this).find('.info-block-item__top').outerHeight() + 2);
+        }, )
     });
     const infoBlockItemBtnEls = infoBlockItemEls.find('.info-block-item__top');
     makeAccordion(infoBlockItemBtnEls, infoBlockItemEls, 'info-block-item--active', 'info-block-item--no-border');
