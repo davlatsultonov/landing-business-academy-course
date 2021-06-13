@@ -1189,7 +1189,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 .input-error {
 
     input, input:hover {
-        border-color: #dc1414;
+        border-color: #dc1414 !important;
     }
 
     .registration-block-form__text {
