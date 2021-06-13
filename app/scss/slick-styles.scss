@@ -22,10 +22,6 @@
     box-shadow: none;
     opacity: .5;
 
-    &:focus-visible {
-      outline: none;
-    }
-
     &.slick-active {
       transform: scale(1);
       opacity: 1;
@@ -41,14 +37,22 @@
   }
 }
 
-.slick-slide .drop-shadow {
-  box-shadow: none; //no shadow for a hidden slide
-  transition: box-shadow 0.1s ease-in-out; //little effect to fade the shadow
+.slick-slide {
+
+  &:focus, &:focus-visible, &:active {
+    outline: none;
+  }
+
+  .drop-shadow {
+    box-shadow: none; //no shadow for a hidden slide
+    transition: box-shadow 0.1s ease-in-out; //little effect to fade the shadow
+  }
+
+  &.slick-active .drop-shadow {
+    box-shadow: 0 0 43px 0 rgba(0, 0, 0, 0.35); //only the active slides have the shadow
+  }
 }
 
-.slick-slide.slick-active .drop-shadow {
-  box-shadow: 0 0 43px 0 rgba(0, 0, 0, 0.35); //only the active slides have the shadow
-}
 
 .slick-dots {
   bottom: -50px;
