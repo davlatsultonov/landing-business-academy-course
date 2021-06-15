@@ -386,7 +386,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     padding-bottom: 51px;
 
     &__title {
-        margin-bottom: 83px;
+        margin-bottom: 64px;
     }
 
     &-list {
@@ -637,7 +637,13 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         &__des {
             opacity: 0;
             visibility: hidden;
-            max-height: 0;
+            padding: 0 36px 19px;
+            transition: opacity 300ms ease-in-out, visibility 400ms ease;
+
+            &:not(:last-of-type) {
+                border-bottom: 1px solid $orange;
+                margin-bottom: 24px;
+            }
 
             &--checked {
                 position: relative;
