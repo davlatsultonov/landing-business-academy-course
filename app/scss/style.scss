@@ -593,7 +593,10 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         border-right: 1px solid transparent;
         padding-right: 16px;
         padding-left: 16px;
-        transition-property: max-height, opacity,transform,-webkit-transform!important;
+        transition-property: max-height, opacity, transform,-webkit-transform!important;
+        transition-duration: 0.4s;
+        position: relative;
+        z-index: 1;
 
         &:first-of-type {
             border-top: 1px solid $orange;
@@ -636,9 +639,10 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 
         &__des {
             opacity: 0;
-            visibility: hidden;
             padding: 0 36px 19px;
-            transition: opacity 300ms ease-in-out, visibility 400ms ease;
+            transition: opacity 300ms ease;
+            position: relative;
+            z-index: -1;
 
             &:not(:last-of-type) {
                 border-bottom: 1px solid $orange;
@@ -699,7 +703,6 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 
                 &__des {
                     opacity: 1;
-                    visibility: visible;
                 }
             }
         }
@@ -780,7 +783,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
             }
 
             &__link-btn {
-                margin-top: 28px;
+                margin-top: 24px;
                 line-height: 24px;
                 letter-spacing: 0.6px;
                 font-weight: 500;
@@ -942,7 +945,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
         line-height: 32px;
         color: #3a6e80;
         text-transform: none;
-        margin-bottom: 0;
+        margin-bottom: 0 !important;
     }
 
     &__price {
@@ -956,13 +959,13 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 
     .tariff-list {
-        margin-top: 25px;
+        margin-top: 24px;
         margin-bottom: 32px;
 
         &__item {
             color: #737d80;
             border-bottom: 1px solid var(--base-color);
-            padding-top: 24px;
+            padding-top: 22px;
             padding-bottom: 8px;
             font-size: 14px;
             line-height: 20px;
@@ -1087,7 +1090,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 
     &__footer {
-        margin-top: 32px;
+        margin-top: 24px;
         color: #54598c;
         font-size: 8px;
         font-weight: 400;
@@ -1099,7 +1102,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
     }
 
     &-form {
-        margin-top: 30px;
+        margin-top: 28px;
         $super-parent: &;
 
         &__label {
@@ -1179,6 +1182,7 @@ h1, h2, h3, p:not(:last-of-type), .p-medium:not(:last-of-type), .p-small:not(:la
 
                 &__text {
                     color: $orange;
+                    opacity: .5;
                 }
 
                 &__btn {

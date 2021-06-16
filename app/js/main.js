@@ -102,8 +102,15 @@ $(function () {
         }
     }
 
-    checkAOSEnd('info-block', $('[data-aos-id="info-block"]').last()[0]);
-    checkAOSEnd('info-block-faq', $('[data-aos-id="info-block-faq"]').last()[0]);
+
+    // dom els for accordion
+    const infoBlockItemEls = $('[data-aos-id="info-block"]'),
+          infoBlockFAQItemEls = $('[data-aos-id="info-block-faq"]'),
+          infoBlockFAQItemBtnEls = infoBlockFAQItemEls.find('.info-block-item__top'),
+          infoBlockItemBtnEls = infoBlockItemEls.find('.info-block-item__top');
+
+    checkAOSEnd('info-block', infoBlockItemEls.last()[0]);
+    checkAOSEnd('info-block-faq', infoBlockFAQItemEls.last()[0]);
 
     function checkAOSEnd(idName = '', el = false, transitionDuration = 0.4) {
         if (!el && !idName) return;
@@ -128,42 +135,54 @@ $(function () {
     // accordion blocks
     function makeAccordion(els, elsParent, activeClass, borderCancelClass) {
         if (!els.length) return;
-
+        const isBlockOfAnswers = $(elsParent).closest('.info-block--answers').length;
         els.on('click', function () {
             const thisParent = $(this).parent();
-            const thisParentHeight =  this.scrollHeight + 2;
             const thisParentPrevSibling = thisParent.prev();
+            const thisHeight = $(this).outerHeight();
+            const descriptionEl = thisParent.find('.info-block-item__des');
+            const descriptionElCount = descriptionEl.length;
+            const descriptionHeight = descriptionElCount < 2 ? descriptionEl.outerHeight() :
+                                      descriptionEl.toArray().reduce((acc, el) => acc + $(el).outerHeight(), 0) + 26;
+            console.log(descriptionHeight);
 
             if (thisParent.hasClass(activeClass)) {
-                thisParent.css('max-height', thisParentHeight);
                 thisParent.removeClass(activeClass);
+                // minus 2 cause when active info-block-item__top adds 20px
+                thisParent.css('max-height', thisHeight - (isBlockOfAnswers ? 7 : 2));
                 if (thisParentPrevSibling.length) thisParentPrevSibling.removeClass(borderCancelClass);
                 return;
             }
 
             elsParent.each(function () {
-                $(this).css('max-height', $(this).find('.info-block-item__top')[0].scrollHeight + 2);
+                if (!$(this).hasClass(activeClass)) {
+                    $(this).removeClass(borderCancelClass);
+                    return;
+                }
                 $(this).removeClass(activeClass);
+                $(this).css('max-height', $(this).find('.info-block-item__top').outerHeight() - (isBlockOfAnswers ? 7 : 2));
                 $(this).removeClass(borderCancelClass);
             })
 
-            const desEl = thisParent.find('.info-block-item__des');
-            const desHeight = desEl.length < 2 ? desEl[0].scrollHeight + 23
-                                : (desEl.toArray().reduce((acc, curr) => acc + curr.scrollHeight + 22, 0)) + (desEl.length - 1) * 23;
             thisParent.addClass(activeClass);
-            thisParent.css('max-height', desHeight + thisParentHeight);
-            thisParentPrevSibling.addClass(thisParentPrevSibling.length ? borderCancelClass : '');
+            thisParent.css('max-height',
+                thisHeight +
+                descriptionHeight + (isBlockOfAnswers ? 10 : 6)
+            )
+            thisParentPrevSibling.addClass(borderCancelClass);
         });
     }
 
-    // dom els for accordion
-    const infoBlockItemEls = $('.info-block-item');
-
-    infoBlockItemEls.each(function (i, el) {
-        setTimeout(() => {
+    setTimeout(() => {
+        infoBlockItemEls.each(function () {
             $(this).css('max-height', $(this).find('.info-block-item__top').outerHeight() + 2);
-        }, )
+        });
+
+        infoBlockFAQItemEls.each(function () {
+            $(this).css('max-height', $(this).find('.info-block-item__top').outerHeight() + 1);
+        });
+
+        makeAccordion(infoBlockItemBtnEls, infoBlockItemEls, 'info-block-item--active', 'info-block-item--no-border');
+        makeAccordion(infoBlockFAQItemBtnEls, infoBlockFAQItemEls, 'info-block-item--active', 'info-block-item--no-border');
     });
-    const infoBlockItemBtnEls = infoBlockItemEls.find('.info-block-item__top');
-    makeAccordion(infoBlockItemBtnEls, infoBlockItemEls, 'info-block-item--active', 'info-block-item--no-border');
 });

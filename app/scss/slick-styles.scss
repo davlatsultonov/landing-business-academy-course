@@ -37,7 +37,12 @@
   }
 }
 
+.slick-active:focus {
+  outline: none;
+}
+
 .slick-slide {
+  outline: none;
 
   &:focus, &:focus-visible, &:active {
     outline: none;
