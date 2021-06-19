@@ -184,5 +184,5 @@ $(function () {
 
         makeAccordion(infoBlockItemBtnEls, infoBlockItemEls, 'info-block-item--active', 'info-block-item--no-border');
         makeAccordion(infoBlockFAQItemBtnEls, infoBlockFAQItemEls, 'info-block-item--active', 'info-block-item--no-border');
-    });
+    }, 100);
 });
